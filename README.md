@@ -41,3 +41,6 @@ So, trigger this script every 1 hour (more or less) and every email labeled with
 Thus, you can see the _label_ "GS-RequestPending" and retry contacting that person. When someone replies you, 
 the _label_ "GS-RequestPending" will be removed automatically the next time the script is triggered.
 
+## Doubts? Ideas?
+
+Do not hesitate in contacting me via twitter: [@theluctus](http://www.twitter.com/theluctus)
