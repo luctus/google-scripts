@@ -31,13 +31,13 @@ Let's see the first script: dont-forget-to-retry.js
 
 - Let's say you contact people every day, asking for photos, projects, or what ever.
 - Let's say every email you send contacting people has the _subject_ "Are you interested?"
-- Let's say you can label every mail you send (creating a filter by _subject_ and adding the _label_ "PubRequest" automatically)
+- Let's say you can label every mail you send (creating a filter by _subject_ and adding the _label_ "GS-Request" automatically)
 - Let's say some people replies you (great!) and another people don't.
 - Let's say if you retry contacting some people that haven't replied yet you can get new replies (great!)
 
-So, trigger this script every 1 hour (more or less) and every email labeled with "PubRequest" will be labeled with
-"PubRequestOK" (if the recipient replied you) or "PubRequestPending" (if the recipient doesn't replied you yet) too.
+So, trigger this script every 1 hour (more or less) and every email labeled with "GS-Request" will be labeled with
+"GS-RequestOK" (if the recipient replied you) or "GS-RequestPending" (if the recipient doesn't replied you yet) too.
 
-Thus, you can see the _label_ "PubRequestPending" and retry contacting that person. When someone replies you, 
-the _label_ "PubRequestPending" will be removed automatically the next time the script is triggered.
+Thus, you can see the _label_ "GS-RequestPending" and retry contacting that person. When someone replies you, 
+the _label_ "GS-RequestPending" will be removed automatically the next time the script is triggered.
 
