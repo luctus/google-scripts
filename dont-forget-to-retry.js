@@ -1,12 +1,27 @@
 function main(){
  
-  var label = GmailApp.getUserLabelByName("PubRequest");
-  var labelOK = GmailApp.getUserLabelByName("PubRequestOK");
+  /*
+  * You can configure this block
+  */
+  var gs_request = "GS-Request";
+  var gs_request_ok = "GS-RequestOK";
+  var gs_request_pending = "GS-RequestPending";
+  var gs_request_forget = "GS-RequestForget";
+  
+  /*
+  * Don't touch this
+  */
+  
+  var label = GmailApp.getUserLabelByName(gs_request);
+  var labelOK = GmailApp.getUserLabelByName(gs_request_ok);
   if(!labelOK)
-    labelOK = GmailApp.createLabel("PubRequestOK");
-  var labelPending = GmailApp.getUserLabelByName("PubRequestPending");
+    labelOK = GmailApp.createLabel(gs_request_ok);
+  var labelPending = GmailApp.getUserLabelByName(gs_request_pending);
   if(!labelPending)
-    labelPending = GmailApp.createLabel("PubRequestPending");
+    labelPending = GmailApp.createLabel(gs_request_pending);
+  var labelForget = GmailApp.getUserLabelByName(gs_request_forget);
+  if(!labelForget)
+    labelForget = GmailApp.createLabel(gs_request_forget);
   
   var threads = label.getThreads();
   var thread = null;
@@ -15,7 +30,7 @@ function main(){
 
     thread = threads[i];
     
-    //Was this thread already processed?
+    //Was this thread already processed? i.e: labeled as 'OK'
     var isOK = false;
     var threadLabels = thread.getLabels();
     for ( var l = 0 ; l < threadLabels.length ; l ++ ){
@@ -25,16 +40,18 @@ function main(){
     if(isOK)
       continue;
     
+    
+    
     var messages = thread.getMessages();
-
     
     //Was I the original sender?
     var firstMessage = messages[0];
     if ( !amITheSender(firstMessage.getFrom()) ) {
+      //I'm not the original sender, so I'm not interested in tracking this thread.
       continue;
     }
+        
     
-
     //Did anyone else replied?
     var replied = false;
     for ( var j = 0 ; j < messages.length ; j ++)
@@ -42,6 +59,7 @@ function main(){
       if ( !amITheSender(messages[j].getFrom()) ){
         thread.addLabel(labelOK);
         thread.removeLabel(labelPending);
+        thread.removeLabel(labelForget);
         replied = true;
         break;
       }
@@ -51,8 +69,16 @@ function main(){
       continue;
     
     
-    //Are you still here? Yes, you are alone. For ever.
-    Logger.log(firstMessage.getTo() + " haven't replied yet");
+    //Did I try 3 times yet? 
+    if(messages.length >= 3)
+    {
+      //We don't want to be a spammer...
+      thread.addLabel(labelForget);
+      thread.removeLabel(labelPending);
+      continue;
+    }
+    
+    //Are you still here? So they haven't replied you yet
     thread.addLabel(labelPending);
   }
 }
