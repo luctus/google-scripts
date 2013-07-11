@@ -20,7 +20,7 @@ and then run it with the _play_ button.
 
 ### Do I need to run this script manually?
 
-Yes, you can run your script every time you want __or configure a Trigger__: Click on _Resources_ and then 
+You can run your script every time you want __or configure a Trigger__: At the _Script Editor_, click on _Resources_ and then 
 _All your triggers_. You can set a trigger like, for example: "Run my foobar function every 5 minutes".
 
 ### How could a script improve my productivity?
