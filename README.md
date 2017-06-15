@@ -1,4 +1,4 @@
-gmail-scripts
+Google Scripts
 =============
 
 A compendium of google scripts that I've done for both improve my productivity and fun.
@@ -25,7 +25,7 @@ _All your triggers_. You can set a trigger like, for example: "Run my foobar fun
 
 ### How could a script improve my productivity?
 
-Let's see the first script: dont-forget-to-retry.js
+Let's undestand what do these scripts can do for you.
 
 ## dont-forget-to-retry.js
 
@@ -40,6 +40,10 @@ So, trigger this script every 1 hour (more or less) and every email labeled with
 
 Thus, you can see the _label_ "GS-RequestPending" and retry contacting that person. When someone replies you, 
 the _label_ "GS-RequestPending" will be removed automatically the next time the script is triggered.
+
+## groups-members.js
+
+If you are managing an organization with more than 20 people and you are using groups for the different teams inside the organization, then you will be probably asked very often about the members of every group. If you execute this script you will be able to share a sheet with all the information :)  
 
 ## Doubts? Ideas?
 
